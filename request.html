@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Request Config</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Request Config</h1>
+
+    <script>
+
+        const myInstance = axios.create({
+            baseURL: "http://dummyjson.com/user/me",
+        });
+            myInstance
+                .interceptors.request.use(config => {
+                    config.headers.authorization = `Bearer ${accessToken}`;
+                    return config;
+                })
+                error => {
+                    return Promise.reject(error);
+                }
+
+        // function tokenPayload() {
+        //     let config = {
+        //         headers: {
+        //             'Authorization': 'Bearer ' + validToken()
+        //             }
+        //         }
+        //     Axios
+        //         .post( 'http://dummyjson.com/user/me', config)
+        //         .then(( response ) => {
+        //             console.log( response )
+        //         })
+        //         .catch()
+        //     }
+
+    </script>
+</body>
+</html>
